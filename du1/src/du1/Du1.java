@@ -197,7 +197,7 @@ public class Du1 {
                 System.out.format("Program bude ukončen\n");
                 return;
             }
-            else if (zs > 90 || zs < -90 || zd > 90 || zd < -90){
+            else if (zs > 90 || zs < -90 || zd > 180 || zd < -180){
                 System.out.format("Zadány chybné souřadnice\n");
                 return;
             }
