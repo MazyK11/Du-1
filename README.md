@@ -1,1 +1,9 @@
-# Du-1
+Popis programu
+
+Vytvořený program vypočítá vzdálenosti poledníků a rovnoběžek pro celý svět od bodu (0,0) po 10° pro 4 tečné válcové zobrazení a jedno sečné zobrazení v normální poloze. Uživatel si může vybrat mezi Marinovým, Braunovým, Mercatorovým, Lambertovým a bonusovým Behrmanovým zobrazením. Uživatel vybírá zobrazení, nastavuje měřítko a poloměr Země. Když uživatel napíše do poloměru „0“ program zvolí již předdefinovaný poloměr 6371,11. V případě Behrmanova zobrazení se program uživatele zeptá, jestli chce nějak speciálně nadefinovat sečné rovnoběžky. Předdefinovaná hodnota je 30°. Pokud ano program ho vyzve k zadání hodnoty ve stupních. Jakmile přesáhne vzdálenost nějaké rovnoběžky nebo poledníku jeden metr, tak program vypíše pomlčku. Následně program vyzve uživatele k zadání z. šířky a z. délky ve stupních. Vypočítá souřadnice bodu na papíře pro dané zobrazení. Program se ptá do té doby, dokud uživatel nenapíše souřadnice 0,0.
+
+Funkcionalita
+
+V programu jsou pro každé zobrazení metody, které jsou zavolány po zadání parametrů pro výpočet. Metody jsou volány pomocí podmínky na základě zadaného parametru. Program je ošetřen, aby nespadnul po zadání špatného znaku pomocí podmínky. Jednotlivé metody pro výpočet zobrazení jsou si velice podobné, kromě metod bonusových, ty se liší. Metody se skládají ze dvou dalších metod, jedna je zabalena v cyklu a vypisuje rovnoběžky. Druhá metoda obsahuje cyklus a další metodu, která vypisuje poledníky. Tyto dvě metody obsahují podmínku, která vypisuje jednotlivé rovnoběžky respektive poledníky, dokud nepřesáhnou hodnotu jednoho metru, potom se vypíše pomlčka. Podrobněji je to vidět v programu Viz komentáře. Metody jsou typu void. Bonusová metoda, která vypočítá sečné zobrazení, je typu double a vrací hodnotu sečných rovnoběžek, které se následně použijí v další bonusové metodě na výpočet bodu. Tato metoda je složená z podmínek a vzorců ostatních metod a vše je zabalené v cyklu.
+
+                                                                                                              Mazur
