@@ -52,7 +52,8 @@ public class Du1 {
 //      načtení poloměru Země a následná podmínka, která zajišťuje, že se
 //      použije předdefinovaný poloměr, když se stiskne 0      
         double f = 0;  
-//      vytvoření proměnných, které použiji v metodách
+//      vytvoření proměnné, kterou použiji pro uložení hodnoty
+//      sečných rovnoběžek
         if (p == 'A'){
             marin(scale,r); 
         }
