@@ -39,6 +39,10 @@ public class Du1 {
         System.out.format("Zvolte prosím celočíselné měřítko. (Číslo za "
                 + "dvojtečkou) např: 50000000 \n");
         int scale = readInt();
+        if(scale < 1){
+            System.out.format("Byl zadán chybný znak\n");
+            return;
+        }
         System.out.format("Zadejete prosím poloměr Země v km, pokud ho neznáte,"
                 + " stiskněte 0\n");
         double r = readDouble();
@@ -48,7 +52,7 @@ public class Du1 {
 //      načtení poloměru Země a následná podmínka, která zajišťuje, že se
 //      použije předdefinovaný poloměr, když se stiskne 0
         int nr = 9;
-        int np = 18;
+        int np = 18;           
         double rov = 0;
         double pol = 0; 
         double f = 0;  
