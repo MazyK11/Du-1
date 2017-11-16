@@ -38,13 +38,11 @@ public class Du1 {
 //      program ukončí
         System.out.format("Zvolte prosím celočíselné měřítko. (Číslo za "
                 + "dvojtečkou) např: 50000000 \n");
-        int iscale = readInt();
-        if(iscale < 1){
+        int scale = readInt();
+        if(scale < 1){
             System.out.format("Byl zadán chybný znak\n");
             return;
         }
-        double scale = 100000 * iscale; 
-//      přepočet na cm
         System.out.format("Zadejete prosím poloměr Země v km, pokud ho neznáte,"
                 + " stiskněte 0\n");
         double r = readDouble();
@@ -83,7 +81,7 @@ public class Du1 {
 //      zavolání bonusové metody
     }
 //    komentáře, hlavně u první metody  
-    public static void marin(double scale, double r){
+    public static void marin(int scale, double r){
         double rov;
         System.out.format("Rovnoběžky po 10°:");
         for (int i = -9; i <= 9; i++) {
@@ -100,7 +98,7 @@ public class Du1 {
 //  nacházý přepočet na cm a podmínka pro výpis pomlčky. Vstupem je scale-
 //  měřítko a poloměr Země r. Metoda je typu void. Další
 //  metody pro zobrazení fungují na stejném principu.  
-    public static void lamb(double scale, double r){
+    public static void lamb(int scale, double r){
         double rov;
         System.out.format("Rovnoběžky po 10°:");
         for (int i = -9; i <= 9; i++) {
@@ -109,7 +107,7 @@ public class Du1 {
         }
         poledniky(scale,r); 
     }
-    public static void braun(double scale, double r){
+    public static void braun(int scale, double r){
         double rov;
         System.out.format("Rovnoběžky po 10°:");
         for (int i = -9; i <= 9; i++) {
@@ -118,7 +116,7 @@ public class Du1 {
         }
         poledniky(scale,r);
     }    
-    public static void merc(double scale, double r){
+    public static void merc(int scale, double r){
         double rov;
         int d;
 //      tady jsem si vytvořil další proměnnou, která bude symbolizovat
@@ -140,7 +138,7 @@ public class Du1 {
         }
         poledniky(scale,r);
     }
-    public static double behr(double scale, double r) throws IOException{
+    public static double behr(int scale, double r) throws IOException{
         double f;
         double rov;
         double pol;
@@ -184,7 +182,7 @@ public class Du1 {
 //    Bonusová metoda, kde jsem ještě přidal výjimku, jelikož se ptám na sečné
 //    rovnoběžky
     
-    public static void bod(char p, double scale, double r, double f)
+    public static void bod(char p, int scale, double r, double f)
             throws IOException {
         for(int i = 0;;i++){
             double rov;
@@ -263,7 +261,7 @@ public class Du1 {
 //    Bonusová metoda pro výpočet bodu. Přes podmínku zjistím, jaké zobrazení
 //    se počítalo a následně použiji pro výpočet ty samé vzorce a metody.
      
-    public static void poledniky(double scale, double r){
+    public static void poledniky(int scale, double r){
         double pol;
         System.out.format("\nPoledníky po 10°:");
         for (int i = -18; i <= 18; i++) {
@@ -273,8 +271,8 @@ public class Du1 {
         }
     }
 //  Metoda pro výpočet poledníků, která volá metodu pro jejich výpis
-    public static void podminkapol(double scale, double pol){
-        pol = (pol/scale);
+    public static void podminkapol(int scale, double pol){
+        pol = (pol/scale) * 100000;
 //      přepočet na cm
         if (pol <= 100 && pol >= -100){
             System.out.format("  %.1f",pol);
@@ -285,8 +283,8 @@ public class Du1 {
 //      podmínka, která jednoduše vypisuje hodnoty, které nejsou větší než 1 m
     }
 //  Metoda, která vypisuje poledníky a přepočítává je na cm
-    public static void podminkarov(double scale,double rov){
-        rov = (rov/scale);
+    public static void podminkarov(int scale,double rov){
+        rov = (rov/scale) * 100000;
         if (rov <= 100 && rov >= -100){
             System.out.format("  %.1f",rov);
         }
