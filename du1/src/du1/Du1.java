@@ -96,9 +96,7 @@ public class Du1 {
 //  Metoda, která vypočte rovnoběžky v Marinově zobrazení a zavolá metodu,
 //  která spočte poledníky. V prvním cyklu se zavolá další metoda, kde se
 //  nacházý přepočet na cm a podmínka pro výpis pomlčky. Vstupem je scale-
-//  měřítko, poloměr Země r, nr - počet rovnoběžek na jedné polokouli, np počet 
-//  poledníků na jedné polokouli, proměnná rov a pol - proměnné, do kterých
-//  ukládám jednotlivé rovnoběžky a poledníky. Metoda je typu void. Další
+//  měřítko a poloměr Země r. Metoda je typu void. Další
 //  metody pro zobrazení fungují na stejném principu.  
     public static void lamb(int scale, double r){
         double rov;
