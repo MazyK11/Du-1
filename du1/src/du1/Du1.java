@@ -51,24 +51,22 @@ public class Du1 {
         }
 //      načtení poloměru Země a následná podmínka, která zajišťuje, že se
 //      použije předdefinovaný poloměr, když se stiskne 0      
-        double rov = 0;
-        double pol = 0; 
         double f = 0;  
 //      vytvoření proměnných, které použiji v metodách
         if (p == 'A'){
-            marin(scale,r,rov,pol); 
+            marin(scale,r); 
         }
         else if (p == 'L'){
-            lamb(scale,r,rov,pol);
+            lamb(scale,r);
           }
         else if (p =='B'){
-            braun(scale,r,rov,pol);
+            braun(scale,r);
         }
         else if (p == 'M'){
-            merc(scale,r,rov,pol);
+            merc(scale,r);
         }
         else if (p == 'H'){
-            f = behr(scale,r,rov,pol);
+            f = behr(scale,r);
             if (f == 100){
                 return;
 //         ukončí program když se vrátí špatná hodnota viz metoda Behr
@@ -78,12 +76,12 @@ public class Du1 {
         }
 //      podmínka, která zavolá metodu podle zvoleného zobrazení
         System.out.format("\n");
-        bod(p, scale, r, rov, pol,f);
+        bod(p, scale, r, f);
 //      zavolání bonusové metody
     }
 //    komentáře, hlavně u první metody  
-    public static void marin(int scale, double r, double rov,
-            double pol){
+    public static void marin(int scale, double r){
+        double rov;
         System.out.format("Rovnoběžky po 10°:");
         for (int i = -9; i <= 9; i++) {
 //          cyklus jde od -9 do 9, to vyjadřuje cestu od "pólu k pólu"
@@ -91,7 +89,7 @@ public class Du1 {
             podminkarov(scale, rov);
 //          zovolá metodu pro výpis rovnoběžek
         }
-        poledniky(pol,scale,r);
+        poledniky(scale,r);
 //      zavolá metodu pro výpočet a výpis poledníků
     }
 //  Metoda, která vypočte rovnoběžky v Marinově zobrazení a zavolá metodu,
@@ -101,26 +99,26 @@ public class Du1 {
 //  poledníků na jedné polokouli, proměnná rov a pol - proměnné, do kterých
 //  ukládám jednotlivé rovnoběžky a poledníky. Metoda je typu void. Další
 //  metody pro zobrazení fungují na stejném principu.  
-    public static void lamb(int scale, double r, double rov, 
-            double pol){
+    public static void lamb(int scale, double r){
+        double rov;
         System.out.format("Rovnoběžky po 10°:");
         for (int i = -9; i <= 9; i++) {
             rov = r * Math.sin((10*i*Math.PI/180));
             podminkarov(scale, rov);
         }
-        poledniky(pol,scale,r); 
+        poledniky(scale,r); 
     }
-    public static void braun(int scale, double r, double rov, 
-            double pol){
+    public static void braun(int scale, double r){
+        double rov;
         System.out.format("Rovnoběžky po 10°:");
         for (int i = -9; i <= 9; i++) {
             rov = 2 * r * Math.tan(((i*10*Math.PI/180)/2));
             podminkarov(scale, rov);
         }
-        poledniky(pol,scale,r);
+        poledniky(scale,r);
     }    
-    public static void merc(int scale, double r, double rov, 
-            double pol){
+    public static void merc(int scale, double r){
+        double rov;
         int d;
 //      tady jsem si vytvořil další proměnnou, která bude symbolizovat
 //      zbytek do 90 
@@ -139,11 +137,12 @@ public class Du1 {
 //          by error
             podminkarov(scale, rov);
         }
-        poledniky(pol,scale,r);
+        poledniky(scale,r);
     }
-    public static double behr(int scale, double r, double rov, 
-            double pol) throws IOException{
+    public static double behr(int scale, double r) throws IOException{
         double f;
+        double rov;
+        double pol;
         System.out.format("Chcete sám nadefinovat sečné rovnoběžky?\n");
         System.out.format("Stiskněte 'A' pro ano a 'N' pro ne -> program "
                 + "použij již předdefinovanou hodnotu\n");
@@ -184,11 +183,11 @@ public class Du1 {
 //    Bonusová metoda, kde jsem ještě přidal výjimku, jelikož se ptám na sečné
 //    rovnoběžky
     
-    public static void bod(char p, int scale, double r, double rov, double pol,
-            double f)
-            throws IOException
-    {
+    public static void bod(char p, int scale, double r, double f)
+            throws IOException {
         for(int i = 0;;i++){
+            double rov;
+            double pol;
             System.out.format("Zadejte zeměpisnou šířku a zeměpisnou délku "
                + "bodu, ve stupních, pro který chcete vypočítat souřadnice na"
                + " papíře. Po zadání bodu (0,0) se program ukončí\n");
@@ -263,7 +262,8 @@ public class Du1 {
 //    Bonusová metoda pro výpočet bodu. Přes podmínku zjistím, jaké zobrazení
 //    se počítalo a následně použiji pro výpočet ty samé vzorce a metody.
      
-    public static void poledniky(double pol, int scale, double r){
+    public static void poledniky(int scale, double r){
+        double pol;
         System.out.format("\nPoledníky po 10°:");
         for (int i = -18; i <= 18; i++) {
 //          cyklus jde od -18 do 18, to vyjadřuje cestu "po rovníku"
