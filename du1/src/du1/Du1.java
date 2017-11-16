@@ -50,27 +50,25 @@ public class Du1 {
             r = 6371.11;
         }
 //      načtení poloměru Země a následná podmínka, která zajišťuje, že se
-//      použije předdefinovaný poloměr, když se stiskne 0
-        int nr = 9;
-        int np = 18;           
+//      použije předdefinovaný poloměr, když se stiskne 0      
         double rov = 0;
         double pol = 0; 
         double f = 0;  
 //      vytvoření proměnných, které použiji v metodách
         if (p == 'A'){
-            marin(scale,r,nr,np,rov,pol); 
+            marin(scale,r,rov,pol); 
         }
         else if (p == 'L'){
-            lamb(scale,r,nr,np,rov,pol);
+            lamb(scale,r,rov,pol);
           }
         else if (p =='B'){
-            braun(scale,r,nr,np,rov,pol);
+            braun(scale,r,rov,pol);
         }
         else if (p == 'M'){
-            merc(scale,r,nr,np,rov,pol);
+            merc(scale,r,rov,pol);
         }
         else if (p == 'H'){
-            f = behr(scale,r,nr,np,rov,pol);
+            f = behr(scale,r,rov,pol);
             if (f == 100){
                 return;
 //         ukončí program když se vrátí špatná hodnota viz metoda Behr
@@ -84,16 +82,16 @@ public class Du1 {
 //      zavolání bonusové metody
     }
 //    komentáře, hlavně u první metody  
-    public static void marin(int scale, double r,int nr, int np, double rov,
+    public static void marin(int scale, double r, double rov,
             double pol){
         System.out.format("Rovnoběžky po 10°:");
-        for (int i = -9; i <= nr; i++) {
+        for (int i = -9; i <= 9; i++) {
 //          cyklus jde od -9 do 9, to vyjadřuje cestu od "pólu k pólu"
             rov = r * (i*10*Math.PI/180);
             podminkarov(scale, rov);
 //          zovolá metodu pro výpis rovnoběžek
         }
-        poledniky(pol,scale,r,np);
+        poledniky(pol,scale,r);
 //      zavolá metodu pro výpočet a výpis poledníků
     }
 //  Metoda, která vypočte rovnoběžky v Marinově zobrazení a zavolá metodu,
@@ -103,31 +101,31 @@ public class Du1 {
 //  poledníků na jedné polokouli, proměnná rov a pol - proměnné, do kterých
 //  ukládám jednotlivé rovnoběžky a poledníky. Metoda je typu void. Další
 //  metody pro zobrazení fungují na stejném principu.  
-    public static void lamb(int scale, double r,int nr, int np, double rov, 
+    public static void lamb(int scale, double r, double rov, 
             double pol){
         System.out.format("Rovnoběžky po 10°:");
-        for (int i = -9; i <= nr; i++) {
+        for (int i = -9; i <= 9; i++) {
             rov = r * Math.sin((10*i*Math.PI/180));
             podminkarov(scale, rov);
         }
-        poledniky(pol,scale,r,np); 
+        poledniky(pol,scale,r); 
     }
-    public static void braun(int scale, double r,int nr, int np, double rov, 
+    public static void braun(int scale, double r, double rov, 
             double pol){
         System.out.format("Rovnoběžky po 10°:");
-        for (int i = -9; i <= nr; i++) {
+        for (int i = -9; i <= 9; i++) {
             rov = 2 * r * Math.tan(((i*10*Math.PI/180)/2));
             podminkarov(scale, rov);
         }
-        poledniky(pol,scale,r,np);
+        poledniky(pol,scale,r);
     }    
-    public static void merc(int scale, double r,int nr, int np, double rov, 
+    public static void merc(int scale, double r, double rov, 
             double pol){
         int d;
 //      tady jsem si vytvořil další proměnnou, která bude symbolizovat
 //      zbytek do 90 
         System.out.format("Rovnoběžky po 10°:");
-        for (int i = -8; i <= (nr-1); i++) {
+        for (int i = -8; i <= 8; i++) {
             if (i >= 0){
                 d = 90 - i*10;
                 rov = r * Math.log((1/Math.tan(((d*Math.PI/180)/2))));
@@ -141,9 +139,9 @@ public class Du1 {
 //          by error
             podminkarov(scale, rov);
         }
-        poledniky(pol,scale,r,np);
+        poledniky(pol,scale,r);
     }
-    public static double behr(int scale, double r,int nr, int np, double rov, 
+    public static double behr(int scale, double r, double rov, 
             double pol) throws IOException{
         double f;
         System.out.format("Chcete sám nadefinovat sečné rovnoběžky?\n");
@@ -171,12 +169,12 @@ public class Du1 {
 //          podmínka, která použije f0 = 30 pro sečné rovnoběžky, když uživatel 
 //          nechce nadefinovat šířku sečných rovnoběžek
         System.out.format("Rovnoběžky po 10°:");
-        for (int i = -9; i <= nr; i++) {
+        for (int i = -9; i <= 9; i++) {
             rov = r * Math.sin((i*10*Math.PI/180)) * (1/Math.cos(f*Math.PI/180));
             podminkarov(scale, rov);
         }
         System.out.format("\nPoledníky po 10°:");
-        for (int i = -18; i <= np; i++) {
+        for (int i = -18; i <= 18; i++) {
             pol = r * (i*10*Math.PI/180) * Math.cos(f*Math.PI/180);
             podminkapol(scale, pol);
         }
@@ -265,9 +263,9 @@ public class Du1 {
 //    Bonusová metoda pro výpočet bodu. Přes podmínku zjistím, jaké zobrazení
 //    se počítalo a následně použiji pro výpočet ty samé vzorce a metody.
      
-    public static void poledniky(double pol, int scale, double r, int np){
+    public static void poledniky(double pol, int scale, double r){
         System.out.format("\nPoledníky po 10°:");
-        for (int i = -18; i <= np; i++) {
+        for (int i = -18; i <= 18; i++) {
 //          cyklus jde od -18 do 18, to vyjadřuje cestu "po rovníku"
             pol = r * (i*10*Math.PI/180);
             podminkapol(scale, pol);
